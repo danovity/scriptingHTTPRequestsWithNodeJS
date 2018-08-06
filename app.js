@@ -5,17 +5,12 @@ var https = require("https");
 // and the path is the resource - '/' is the root path, but if you wanted to read a
 // particular resource (like '/login/index.html'), that would be defined in the path
 
-function getAndPrintHTMLChunks() {
-  var requestOptions = {
-    host: "sytantris.github.io",
-    path: "/http-examples/step1.html"
-  };
-
+function getAndPrintHTMLChunks(options) {
   /* Add your code here */
 
   // notice that https.get takes a callback with one parameter -
   // response, which is a Stream that represents the HTTP response
-  https.get(requestOptions, function(response) {
+  https.get(options, function(response) {
     // set encoding of received data to UTF-8
     response.setEncoding("utf8");
 
@@ -31,3 +26,10 @@ function getAndPrintHTMLChunks() {
     });
   });
 }
+
+var requestOptions = {
+  host: "sytantris.github.io",
+  path: "/http-examples/step1.html"
+};
+
+getAndPrintHTMLChunks(requestOptions);
